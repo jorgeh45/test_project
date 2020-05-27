@@ -1,0 +1,88 @@
+<nav class="navbar navbar-dark">
+  <a class="navbar-brand" href="#">
+    Angular Contacts App
+  </a>
+</nav>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-8 mt-4">
+
+      <ul class="list-group">
+
+
+
+        <div class="card mt-4">
+          <div class="card-body">
+            <div class="card-title">
+              <h3>{{selectedContact._id == ""? "Create Contact" : "Edit Contact"}}</h3>
+            </div>
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input type="text" [(ngModel)]="selectedContact.name" placeholder="Name" required class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fa fa-user icon"></i>
+                <input type="text" [(ngModel)]="selectedContact.phone" placeholder="Phone" required
+                  class="form-control">
+              </div>
+            </div>
+
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fa fa-envelope icon"></i>
+                <input type="text" [(ngModel)]="selectedContact.email" placeholder="Email" class="form-control">
+              </div>
+            </div>
+            <div class="form-group">
+              <div class="input-container">
+                <i class="fa fa-briefcase icon"></i>
+                <input type="text" [(ngModel)]="selectedContact.workplace" placeholder="Workplace" class="form-control">
+              </div>
+            </div>
+
+            <div class="actions">
+
+              <button (click)="addOrEdit()" class="btn btn-primary">
+                Submit
+              </button>
+
+              <button *ngIf="selectedContact._id !== ''" class="btn btn-danger" (click)="delete()">
+                Delete
+              </button>
+
+              <button *ngIf="selectedContact._id !== ''" class="btn btn-warning" (click)="cancel()">
+                Cancel
+              </button>
+            </div>
+          </div>
+        </div>
+
+        <div class="mt-4">
+          <div class="list-group">
+            <a href="#" *ngFor="let contact of contactsArray" (click)="openForEdit(contact)"
+              [class.active]="contact == selectedContact"
+              class="list-group-item list-group-item-action flex-column align-items-start">
+              <div class="d-flex w-100 justify-content-between">
+                <h5 class="mb-1">{{ contact.name }} </h5>
+                <small>Phone: {{ contact.phone }} </small>
+              </div>
+              <p class="mb-1">Email: {{contact.email}}</p>
+              <small>Workplace: {{contact.workplace}}</small>
+            </a>
+
+          </div>
+
+
+        </div>
+
+      </ul>
+    </div>
+    <div class="col-md-4">
+      <img width="300" alt="Angular Logo" src="assets/Angular_full_color_logo.svg.png">
+    </div>
+  </div>
+</div>
